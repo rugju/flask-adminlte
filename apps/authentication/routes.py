@@ -20,7 +20,6 @@ from apps.authentication.models import Users
 from apps.config import Config
 from apps.authentication.util import verify_pass
 
-
 @blueprint.route('/')
 def route_default():
     return redirect(url_for('authentication_blueprint.login'))
@@ -57,9 +56,11 @@ def login():
         password = request.form['password']
 
         # Locate user
-        user = Users.query.filter_by(username=username).first()
+        user = Users.find_by_username(username) #query.filter_by(username=username).first()
 
         # Check the password
+        print (f"Verify Password pw: {password} and user: {username}")
+
         if user and verify_pass(password, user.password):
 
             login_user(user)
@@ -70,6 +71,7 @@ def login():
                                msg='Wrong user or password',
                                form=login_form)
 
+    print(' > Register extensions', current_user)
     if not current_user.is_authenticated:
         return render_template('accounts/login.html',
                                form=login_form)
@@ -83,9 +85,9 @@ def register():
 
         username = request.form['username']
         email = request.form['email']
-
+        print ('register: ', username, email)
         # Check usename exists
-        user = Users.query.filter_by(username=username).first()
+        user = Users.find_by_username(username) #query.filter_by(username=username).first()
         if user:
             return render_template('accounts/register.html',
                                    msg='Username already registered',
@@ -93,7 +95,7 @@ def register():
                                    form=create_account_form)
 
         # Check email exists
-        user = Users.query.filter_by(email=email).first()
+        user = Users.find_by_username(username) #query.filter_by(email=email).first()
         if user:
             return render_template('accounts/register.html',
                                    msg='Email already registered',
@@ -102,8 +104,9 @@ def register():
 
         # else we can create the user
         user = Users(**request.form)
-        db.session.add(user)
-        db.session.commit()
+        user.save()
+        #db.session.add(user)
+        #db.session.commit()
 
         return render_template('accounts/register.html',
                                msg='User created please <a href="/login">login</a>',

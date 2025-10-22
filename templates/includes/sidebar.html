@@ -38,6 +38,36 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
 
+              <li class="nav-item {% if 'crypto' in parent %} menu-open {% endif %}">
+                <a href="#" class="nav-link {% if 'crypto' in parent %} active {% endif %}">
+                  <i class="nav-icon fas fa-robot"></i>
+                  <p>
+                    Cryptobot
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ url_for('cryptobot_blueprint.api') }}" class="nav-link {% if 'api' in segment %} active {% endif %}">
+                      <i class="fa fa-file-alt nav-icon"></i>
+                      <p>API -- {{ segment }}</p>
+                    </a>
+                  </li>
+
+                  {% for API in API_LIST %}
+
+                  <li class="nav-item">
+                    <a href="{{ url_for('cryptobot_blueprint.api_details', id=API.name) }}" class="nav-link {% if 'api-details'+API.name in segment %} active {% endif %}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>{{ API.name }}</p>
+                    </a>
+                  </li>
+
+                  {% endfor %}
+                </ul>
+              </li>
+
+
             <li class="nav-item {% if 'apps' in parent %} menu-open {% endif %}">
             <a href="#" class="nav-link {% if 'apps' in parent %} active {% endif %}">
               <i class="nav-icon fas fa-th-large"></i>

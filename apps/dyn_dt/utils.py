@@ -4,31 +4,31 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 import importlib
-from sqlalchemy import or_
-from sqlalchemy import DateTime, func
+#from sqlalchemy import or_
+#from sqlalchemy import DateTime, func
 from apps import db 
 
-class PageItems(db.Model):
+class PageItems():
     __tablename__ = 'page_items'
-    id = db.Column(db.Integer, primary_key=True)
-    parent = db.Column(db.String(255), nullable=True)
-    items_per_page = db.Column(db.Integer, default=25)
+    id = "" #db.Column(db.Integer, primary_key=True)
+    parent = "" #db.Column(db.String(255), nullable=True)
+    items_per_page = "" #db.Column(db.Integer, default=25)
 
 
-class HideShowFilter(db.Model):
+class HideShowFilter():
     __tablename__ = 'hide_show_filter'
-    id = db.Column(db.Integer, primary_key=True)
-    parent = db.Column(db.String(255), nullable=True)
-    key = db.Column(db.String(255), nullable=False)
-    value = db.Column(db.Boolean, default=False)
+    id = "" #db.Column(db.Integer, primary_key=True)
+    parent = "" #db.Column(db.String(255), nullable=True)
+    key = "" #db.Column(db.String(255), nullable=False)
+    value = "" #db.Column(db.Boolean, default=False)
 
 
-class ModelFilter(db.Model):
+class ModelFilter():
     __tablename__ = 'model_filter'
-    id = db.Column(db.Integer, primary_key=True)
-    parent = db.Column(db.String(255), nullable=True)
-    key = db.Column(db.String(255), nullable=False)
-    value = db.Column(db.String(255), nullable=False)
+    id = "" #db.Column(db.Integer, primary_key=True)
+    parent = "" #db.Column(db.String(255), nullable=True)
+    key = "" #db.Column(db.String(255), nullable=False)
+    value = "" #db.Column(db.String(255), nullable=False)
 
 
 def get_model_fk_values(aModelClass):

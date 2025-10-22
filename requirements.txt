@@ -6,9 +6,11 @@ WTForms==3.2.1
 flask_wtf==1.2.2
 
 # DB
-flask_migrate==4.1.0
-flask_sqlalchemy==3.1.1
-sqlalchemy==2.0.38
+#flask_migrate==4.1.0
+#flask_sqlalchemy==3.1.1
+#sqlalchemy==2.0.38
+
+google-cloud-datastore
 
 # tools
 flask_login==0.6.3
@@ -17,7 +19,9 @@ celery==5.4.0
 redis==5.2.1
 colorama==0.4.6
 PyJWT~=2.10.1
-WTForms-Alchemy==0.19.0
+#WTForms-Alchemy==0.19.0
+Flask-WTF
+bootstrap-flask
 
 # utils
 email_validator==2.2.0
@@ -33,3 +37,7 @@ Flask-CDN==1.5.3
 
 # flask_mysqldb
 # psycopg2-binary
+requests
+ta
+ccxt==4.3.5
+pandas

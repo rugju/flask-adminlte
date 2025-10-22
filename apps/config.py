@@ -19,7 +19,7 @@ class Config(object):
     CELERY_HOSTMACHINE    = "celery@app-generator"
 
     # Set up the App SECRET_KEY
-    SECRET_KEY  = os.getenv('SECRET_KEY', 'S3cret_999')
+    SECRET_KEY  = os.getenv('SECRET_KEY', 'kjbhuzt76t/&76tv76&(%76t(BO:vgtrdx545c5fvgu))')
 
     # Social AUTH context
     SOCIAL_AUTH_GITHUB  = False
@@ -51,9 +51,7 @@ class Config(object):
 
     # try to set up a Relational DBMS
     if DB_ENGINE and DB_NAME and DB_USERNAME:
-
-        try:
-            
+        try:           
             # Relational DBMS: PSQL, MySql
             SQLALCHEMY_DATABASE_URI = '{}://{}:{}@{}:{}/{}'.format(
                 DB_ENGINE,
@@ -85,7 +83,6 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
-
     # Security
     SESSION_COOKIE_HTTPONLY = True
     REMEMBER_COOKIE_HTTPONLY = True

@@ -6,22 +6,31 @@ Copyright (c) 2019 - present AppSeed.us
 import os
 from flask import Flask
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap5
+
+#from flask_sqlalchemy import SQLAlchemy
+from google.cloud import datastore
+
 from importlib import import_module
 
-db = SQLAlchemy()
+
+
+db = datastore.Client()
 login_manager = LoginManager()
 
+
 def register_extensions(app):
-    db.init_app(app)
+    #db.init_app(app)
     login_manager.init_app(app)
 
 def register_blueprints(app):
-    for module_name in ('authentication', 'home', 'dyn_dt', 'charts', ):
+    for module_name in ('authentication', 'home', 'dyn_dt', 'charts', 'cryptobot' ):
         module = import_module('apps.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
 
-from apps.authentication.oauth import github_blueprint, google_blueprint
+#from apps.authentication.oauth import github_blueprint, google_blueprint
+
+
 
 def create_app(config):
 
@@ -40,6 +49,9 @@ def create_app(config):
     app.config.from_object(config)
     register_extensions(app)
     register_blueprints(app)
-    app.register_blueprint(github_blueprint, url_prefix="/login")    
-    app.register_blueprint(google_blueprint, url_prefix="/login")    
+
+    bootstrap = Bootstrap5(app)
+    #app.register_blueprint(github_blueprint, url_prefix="/login")    
+    #app.register_blueprint(google_blueprint, url_prefix="/login")  
+      
     return app
